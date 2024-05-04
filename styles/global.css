@@ -1,0 +1,12 @@
+body
+{
+    background-color: #333;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 0px;
+    color: white;
+    min-height: 5000px;
+}
+
+html {
+    scroll-behavior: smooth;
+  }

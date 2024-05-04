@@ -4,8 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alec Groseclose</title>
+
+    <link rel="stylesheet" href="/portfolio/styles/navHeader.css">
+    <link rel="stylesheet" href="/portfolio/styles/global.css">
+    <link rel="stylesheet" href="/portfolio/styles/mainPage.css">
+
+    <script src="https://kit.fontawesome.com/f0906ef22c.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <div id="navHeader" class="sticky">        
+
+        <div class="navbar">
+
+        <a href="#profileDiv" class="title ignoreHover" id="name">Alec Groseclose</a>    
+
+        <a href=""></span>About</a>
+        <a href=""></span>Skills</a>
+        <a href=""></span>Projects</a>
+        <a href=""></span>Contact</a>
+        <a href="" style="margin-right: 10%;"></span>Resume</a>
+
+        </div>
+            <hr style="height: 1px; background-color: white; border-radius: 0px; margin: 0px">        
+        <br>
+    
+    </div>
+
+    <div class="profileDiv" id="profileDiv">
+
+
+        <div style="text-align: center;">
+            <img src="/portfolio/images/profile_image.jpg" alt="Avatar" class="profileImage">
+            <h1 class="profileName">Alec Groseclose</h1>
+            <h2 class="profileTitle">Service and Engagement Team Leader @ Target</h2>
+        </div>
+    </div>
+
+    <script>
+        function changeColor()
+        {            
+            const nav = document.querySelector(".navbar");
+            const name = nav.querySelector("#name");        
+
+            if(this.scrollY > 150)
+            {
+                nav.classList.add("navShrink");
+                name.classList.add("titleShrink");
+                name.classList.remove("title");
+            }
+            else
+            {
+                nav.classList.remove("navShrink");
+                name.classList.remove("titleShrink")
+                name.classList.add("title");
+            }
+        }
+
+        function scrollTo(element)
+        {
+            element.scrollIntoView({ behavior: "smooth"});
+        }
+
+        window.addEventListener("scroll", changeColor, false);
+    </script>
     
 </body>
 </html>
