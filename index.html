@@ -18,7 +18,7 @@
 
         <a href="#profileDiv" class="title ignoreHover" id="name">Alec Groseclose</a>    
 
-        <a href=""></span>About</a>
+        <a href="#about"></span>About</a>
         <a href=""></span>Skills</a>
         <a href=""></span>Projects</a>
         <a href=""></span>Contact</a>
@@ -31,42 +31,48 @@
     </div>
 
     <div class="profileDiv" id="profileDiv">
-
-
         <div style="text-align: center;">
             <img src="/portfolio/images/profile_image.jpg" alt="Avatar" class="profileImage">
             <h1 class="profileName">Alec Groseclose</h1>
-            <h2 class="profileTitle">Service and Engagement Team Leader @ Target</h2>
+            <h2 class="profileTitle">Shift Leader at Kerbey Lane Cafe, Austin, TX</h2>
         </div>
     </div>
 
-    <script>
-        function changeColor()
-        {            
-            const nav = document.querySelector(".navbar");
-            const name = nav.querySelector("#name");        
+    <a id="about"><a class="anchor"></a></a>
+    <div class="aboutDiv" id="">
+        <div class="row">
+            <h1>Alec Groseclose</h1>
+            <h4>Computer Science Major, Software Developer, and Aspiring Video Game Developer</h4>
 
-            if(this.scrollY > 150)
-            {
-                nav.classList.add("navShrink");
-                name.classList.add("titleShrink");
-                name.classList.remove("title");
-            }
-            else
-            {
-                nav.classList.remove("navShrink");
-                name.classList.remove("titleShrink")
-                name.classList.add("title");
-            }
-        }
+            <p>I'm an undergraduate student at Texas State Universtiy pursing a Bachelor of Science in Computer Science expecting to graduate in December 2025.</p>
+            <p>My interests include software design and development, video game design, and pixel art and animation.</p>
+            <br>
 
-        function scrollTo(element)
-        {
-            element.scrollIntoView({ behavior: "smooth"});
-        }
+            <h4>Texas State University</h4>
+            <ul>
+                <li>Bachelor of Science in Computer Science</li>
+                <li>Minor in Mathematics</li>
+                <li>Expected graduation date: December 2025</li>
+            </ul>
+        </div>
+    </div>
 
-        window.addEventListener("scroll", changeColor, false);
-    </script>
+    <div class="skillsDiv">
+        <div class="row">
+            <h1 class="title">Skills</h1>
+            <p>Below are a few of my skills</p>
+        </div>
+        <div class="row">
+            <div class="iconContainer">
+                <i class="fa-solid fa-gamepad"></i>
+            </div>
+            <h1 class="">Game Development</h1>
+            
+            
+        </div>
+    </div>
+
+    <script type="module" src="/portfolio/javascript/navHelpers.js"></script>
     
 </body>
 </html>

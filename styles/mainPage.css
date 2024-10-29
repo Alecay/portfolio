@@ -1,10 +1,16 @@
+a .anchor
+{
+    padding-top: 1px;
+    margin-top: -1px;
+}
+
 .profileDiv
 {
     /* background-image: url(/portfolio/images/river.jpg); */
-    background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ), url("/portfolio/images/river.jpg");
+    background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ), url("/portfolio/images/austin_night_cropped.jpg");
     background-size: cover;
     min-height: 800px;
-    padding-top: 300px;
+    padding-top: 200px;
 }
 
 .profileImage
@@ -24,5 +30,59 @@
 .profileTitle
 {
     margin-top: 10px;
+    font-size: 50px;
+}
+
+.aboutDiv
+{
+    background-color: rgb(211, 207, 207);
+    /*min-height: 800px;*/
+    border-top: solid 2px white;
+    border-bottom: solid 2px white;
+    color: black;
+    padding: 16px;
+}
+
+.aboutDiv .row
+{
+    margin: 16px 128px 16px 128px;
+}
+
+.skillsDiv
+{
+    background-color: rgb(74, 170, 83);
+    min-height: 800px;
+    padding: 16px;
+}
+
+.skillsDiv .row
+{
+    text-align: center;
+}
+
+.skillsDiv .row .title
+{
+    font-size: 50px;
+}
+
+.skillsDiv .row .iconContainer
+{
+    position: relative;
+    right: -50%;
+    margin-right: -50px;
+    text-align: center;
+    border-radius: 50px;
+    background-color: white;
+    width: 100px;
+    height: 100px;
+    color: black;
+    
+}
+
+.skillsDiv .row .iconContainer i
+{
+    position: absolute;
+    top: 25%;
+    left: 20%;
     font-size: 50px;
 }
