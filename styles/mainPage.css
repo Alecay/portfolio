@@ -65,24 +65,41 @@ a .anchor
     font-size: 50px;
 }
 
+.skillsDiv .row .flexContainer
+{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.skillsDiv .row .flexElement
+{
+    margin: 30px;
+    /* border: solid white 2px; */
+    text-align: center;
+    padding: 10px;
+    max-width: 300px;
+}
+
 .skillsDiv .row .iconContainer
 {
-    position: relative;
-    right: -50%;
-    margin-right: -50px;
     text-align: center;
     border-radius: 50px;
     background-color: white;
     width: 100px;
     height: 100px;
     color: black;
+    margin: 0px auto;
     
 }
 
 .skillsDiv .row .iconContainer i
 {
-    position: absolute;
-    top: 25%;
-    left: 20%;
+    padding-top: 25px;
     font-size: 50px;
+}
+
+.skillsDiv .row .exampleLink
+{
+    color: blue;
 }
