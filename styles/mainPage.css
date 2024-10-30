@@ -1,13 +1,15 @@
-a .anchor
+a.anchor
 {
-    padding-top: 1px;
-    margin-top: -1px;
+    display: block;
+    position: relative;
+    top: -50px;
+    visibility: hidden;
 }
 
 .profileDiv
 {
     /* background-image: url(/portfolio/images/river.jpg); */
-    background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ), url("/portfolio/images/austin_night_cropped.jpg");
+    background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ), url("/images/austin_night_cropped.jpg");
     background-size: cover;
     min-height: 800px;
     padding-top: 200px;
