@@ -11,7 +11,7 @@ a.anchor
     /* background-image: url(/portfolio/images/river.jpg); */
     background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ), url("/images/austin_night_cropped.jpg");
     background-size: cover;
-    min-height: 800px;
+    min-height: 900px;
     padding-top: 200px;
 }
 
@@ -26,6 +26,7 @@ a.anchor
 .profileName
 {
     font-size: 80px;
+    margin-top: 200px;
     margin-bottom: 10px;
 }
 
@@ -47,7 +48,22 @@ a.anchor
 
 .aboutDiv .row
 {
-    margin: 16px 128px 16px 128px;
+    margin: 16px 16px 16px 16px;
+}
+
+.aboutDiv .row .flexContainer
+{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: left;
+}
+
+.aboutDiv .row .flexContainer .flexElement
+{
+    margin: 30px;
+    /* border: solid white 2px; */
+    text-align: left;
+    padding: 10px;
 }
 
 .skillsDiv
@@ -74,7 +90,7 @@ a.anchor
     justify-content: center;
 }
 
-.skillsDiv .row .flexElement
+.skillsDiv .row .flexContainer .flexElement
 {
     margin: 30px;
     /* border: solid white 2px; */

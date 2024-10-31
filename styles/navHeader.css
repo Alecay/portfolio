@@ -22,6 +22,7 @@
 
 .navShrink .titleShrink
 {
+    opacity: 100%;
     font-size: 25px;
     font-weight: bold;
     color: white;
@@ -29,7 +30,8 @@
     padding: 14px 16px;
     text-decoration: none;
     
-    transition: 0.5s ease-in-out;
+    transition: .5s ease-in-out;
+    transition-delay: .5s;
 
     margin-right: auto;
     margin-left: 10%;
@@ -37,18 +39,22 @@
 
 .navbar .title
 {
-    
-    font-size: 50px;
+    opacity: 0%;
+    font-size: 25px;
+    font-weight: bold;
+    /* font-size: 50px;
     font-weight: bold;
     color: white;
     text-align: left;
     padding: 14px 16px;
-    text-decoration: none;
+    text-decoration: none; */
 
-    transition: 0.5s ease-in-out;
+    transition: .5s ease-in-out;
+    transition-delay: 0s;
 
     margin-right: auto;
     margin-left: 10%;
+
 }
 
 .navbar .titleCentered
