@@ -46,6 +46,21 @@ a.anchor
     padding: 16px;
 }
 
+.aboutDiv h1
+{
+    font-size: 50px;
+}
+
+.aboutDiv h4
+{
+    font-size: 22px;
+}
+
+.aboutDiv p, ul
+{
+    font-size: 20px;
+}
+
 .aboutDiv .row
 {
     margin: 16px 16px 16px 16px;
@@ -54,7 +69,7 @@ a.anchor
 .aboutDiv .row .flexContainer
 {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: left;
 }
 
@@ -64,6 +79,33 @@ a.anchor
     /* border: solid white 2px; */
     text-align: left;
     padding: 10px;
+}
+
+.aboutDiv .row .iconContainer
+{
+    text-align: center;
+    border-radius: 25px;
+    background-color: white;
+    width: 50px;
+    height: 50px;
+    color: black;
+    margin: 15px 5px;
+    display: inline-block;
+
+    transition: 0.5s ease-in-out;    
+}
+
+.aboutDiv .row .iconContainer:hover
+{
+    background-color: rgb(74, 170, 83);
+    color: white;
+    transition: 0.5s ease-in-out;
+}
+
+.aboutDiv .row .iconContainer i
+{
+    padding-top: 12.5px;
+    font-size: 25px;
 }
 
 .skillsDiv
@@ -83,6 +125,11 @@ a.anchor
     font-size: 50px;
 }
 
+.skillsDiv .skillTitle
+{
+    font-size: 30px;
+}
+
 .skillsDiv .row .flexContainer
 {
     display: flex;
@@ -96,7 +143,7 @@ a.anchor
     /* border: solid white 2px; */
     text-align: center;
     padding: 10px;
-    max-width: 300px;
+    max-width: 350px;
 }
 
 .skillsDiv .row .iconContainer
@@ -120,4 +167,121 @@ a.anchor
 .skillsDiv .row .exampleLink
 {
     color: blue;
+}
+
+.projectsDiv
+{
+    background-color: rgb(211, 207, 207);
+    min-height: 800px;
+    border-top: solid 2px white;
+    border-bottom: solid 2px white;
+    color: black;
+    padding: 16px;
+}
+
+.projectsDiv .flexContainer
+{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+
+.projectsDiv .flexContainer .flexElement
+{
+    /* border: solid white 2px; */
+    text-align: center;
+    max-width: 350px;
+    max-height: 200px;
+
+    min-height: 200px;
+    min-width: 350px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.projectsDiv h1
+{
+    font-size: 50px;
+    margin-top: 25px;
+}
+
+.projectsDiv .flexContainer .flexElement .imgContainer h1
+{
+    font-size: 30px;
+    margin-top: 15px;
+    margin-bottom: 0px;
+}
+
+.projectsDiv .flexContainer .flexElement .imgContainer
+{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+}
+
+.projectsDiv .flexContainer .flexElement .imgContainer a
+{
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    display: block;
+
+    text-align: center;
+    font-style: normal;
+    color: white;
+    text-decoration: none;
+}
+
+.projectsDiv .flexContainer .flexElement .imgContainer a img
+{
+    position: relative;
+    top: 0%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    mix-blend-mode: multiply;
+}
+
+.projectsDiv .flexContainer .flexElement .imgContainer a .imgTint
+{
+    position: relative;
+    top: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(74, 170, 83, 0);
+
+    transition: 0.5s ease-in-out;
+}
+
+.projectsDiv .flexContainer .flexElement .imgContainer a:hover .imgTint
+{
+    width: 90%;
+    height: 90%;
+
+    position: relative;
+    top: 5%;
+
+    margin: 5%;
+    margin-top: 0%;
+
+    background-color: rgba(74, 170, 83, 500);
+
+    transition: 0.5s ease-in-out;
+}
+
+.projectsDiv .flexContainer .flexElement .imgContainer a .captionContainer
+{
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    position: absolute;
+    text-shadow: black -0px 5px 10px;
+}
+
+.projectsDiv .flexContainer .flexElement .imgContainer a .captionContainer h1, p
+{
+    padding-left: 5%;
+    padding-right: 5%;
 }
