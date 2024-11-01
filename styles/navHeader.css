@@ -12,6 +12,7 @@
 
     transition: 0.5s ease-in-out;
     scroll-behavior: smooth;
+    z-index: 100;
 }
 
 .navShrink
@@ -35,6 +36,7 @@
 
     margin-right: auto;
     margin-left: 10%;
+    cursor: default;
 }
 
 .navbar .title
@@ -42,12 +44,6 @@
     opacity: 0%;
     font-size: 25px;
     font-weight: bold;
-    /* font-size: 50px;
-    font-weight: bold;
-    color: white;
-    text-align: left;
-    
-    text-decoration: none; */
     padding: 30px 16px;
 
     transition: .5s ease-in-out;
@@ -55,6 +51,7 @@
 
     margin-right: auto;
     margin-left: 10%;
+    cursor: pointer;
 
 }
 
@@ -159,4 +156,5 @@
     position: fixed;
     top: 0;
     width: 100%;
+    z-index: 100;
 }

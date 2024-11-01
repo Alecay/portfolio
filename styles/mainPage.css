@@ -12,7 +12,13 @@ a.anchor
     background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ), url("/images/austin_night_cropped.jpg");
     background-size: cover;
     min-height: 900px;
-    padding-top: 200px;
+    padding-top: 350px;
+}
+
+.profileDiv h1, h2
+{
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .profileImage
@@ -20,28 +26,26 @@ a.anchor
     width: 300px;
     height: 300px;
     border-radius: 50%;    
-    border: solid 2px white;
+    /* border: solid 2px white; */
 }
 
 .profileName
 {
     font-size: 80px;
-    margin-top: 200px;
+    margin-top: 10px;
     margin-bottom: 10px;
 }
 
 .profileTitle
 {
-    margin-top: 10px;
     font-size: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .aboutDiv
 {
     background-color: rgb(211, 207, 207);
-    /*min-height: 800px;*/
-    border-top: solid 2px white;
-    border-bottom: solid 2px white;
     color: black;
     padding: 16px;
 }
@@ -70,15 +74,30 @@ a.anchor
 {
     display: flex;
     flex-flow: row wrap;
-    justify-content: left;
+    justify-content: center;
 }
 
 .aboutDiv .row .flexContainer .flexElement
 {
-    margin: 30px;
-    /* border: solid white 2px; */
     text-align: left;
     padding: 10px;
+    margin: 30px;
+}
+
+@media screen and (min-width: 1450px) 
+{
+    .aboutDiv .row .flexContainer
+    {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: left;
+    }
+
+    .aboutDiv .row .flexContainer .flexElement
+    {
+        margin: 30px;
+    }
+
 }
 
 .aboutDiv .row .iconContainer
@@ -173,28 +192,32 @@ a.anchor
 {
     background-color: rgb(211, 207, 207);
     min-height: 800px;
-    border-top: solid 2px white;
-    border-bottom: solid 2px white;
+    /* border-top: solid 2px white;
+    border-bottom: solid 2px white; */
     color: black;
-    padding: 16px;
+    padding: 16px 46px;
 }
 
 .projectsDiv .flexContainer
 {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: center;
+    /* max-width: 500px;
+    margin-left: auto;
+    margin-right: auto; */
 }
 
 .projectsDiv .flexContainer .flexElement
 {
     /* border: solid white 2px; */
     text-align: center;
-    max-width: 350px;
-    max-height: 200px;
+    max-width: 500px;
+    max-height: 300px;
 
-    min-height: 200px;
-    min-width: 350px;
+    min-width: 300px;
+    min-height: 100px;
+
     margin: 0px;
     padding: 0px;
 }
@@ -219,6 +242,7 @@ a.anchor
     position: relative;
     text-align: center;
     overflow: hidden;
+    z-index: 0;
 }
 
 .projectsDiv .flexContainer .flexElement .imgContainer a
