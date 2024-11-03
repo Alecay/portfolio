@@ -6,6 +6,7 @@
     <title>Alec Groseclose</title>
 
     <link rel="stylesheet" href="styles/navHeader.css">
+    <link rel="stylesheet" href="styles/footer.css">
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/mainPage.css">
 
@@ -16,13 +17,13 @@
 
         <div class="navbar">
 
-        <a href="#profileDiv" class="title ignoreHover" id="name">Alec Groseclose</a>    
+            <a href="#profileDiv" class="title ignoreHover" id="name">Alec Groseclose</a>    
 
-        <a href="#about"></span>About</a>
-        <a href="#skills"></span>Skills</a>
-        <a href="#projects"></span>Projects</a>
-        <a href="#contact"></span>Contact</a>
-        <a href="#resume" style="margin-right: 10%;"></span>Resume</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#resume">Resume</a>
+            <a href="#contact" style="margin-right: 10%;">Contact</a>
 
         </div>    
     </div>
@@ -43,17 +44,23 @@
                 <div class="flexElement">
                     <img src="images/profile_image.jpg" alt="Avatar" class="profileImage">
                     <div style="text-align: center;">
-                        <div class="iconContainer">
-                            <i class="fa-brands fa-linkedin"></i>
-                        </div>
+                        <a href="http://www.linkedin.com/in/alecrgrose" target="_blank">
+                            <div class="iconContainer">
+                                <i class="fa-brands fa-linkedin"></i>
+                            </div>
+                        </a> 
 
-                        <div class="iconContainer">
-                            <i class="fa-brands fa-github"></i>
-                        </div>
+                        <a href="https://github.com/Alecay" target="_blank">
+                            <div class="iconContainer">
+                                <i class="fa-brands fa-github"></i>
+                            </div>
+                        </a>
 
-                        <div class="iconContainer">
-                            <i class="fa-solid fa-envelope"></i>
-                        </div>
+                        <a href="mailto:alecrgrose@gmail.com">
+                            <div class="iconContainer">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                        </a>
                     </div>
                 </div>
 
@@ -440,6 +447,70 @@
         </div>
         
     </div>
+
+    <a id="resume" class="anchor"></a>
+    <div class="resumeDiv">
+        <h1 style="text-align: center;">Resume</h1>
+
+        <div class="pdfHolder">
+            <div class="pdfBox">
+                <object data="docs/Resume.pdf" type="application/pdf" title="Resume" style="width: 100%; height: 70%;">
+                    <embed src="docs/Resume.pdf" type="application/pdf" title="Resume">
+                        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="docs/Resume.pdf">Download PDF</a>.</p>
+                    </embed>
+                </object>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer">        
+
+        <div class="footerBar">
+
+            <div class="outerDiv" style="font-size: 100%;">
+                <a style="font-size: 100%;">Copyright © Alec Groseclose 2024</a>
+            </div>
+
+            <div class="centerDiv">
+                <div style="text-align: center;">
+                    <a href="http://www.linkedin.com/in/alecrgrose" target="_blank" style="font-size: 25px;">
+                        <div class="iconContainer">
+                            <i class="fa-brands fa-linkedin"></i>
+                        </div>
+                    </a> 
+    
+                    <a href="https://github.com/Alecay" target="_blank" style="font-size: 25px;">
+                        <div class="iconContainer">
+                            <i class="fa-brands fa-github"></i>
+                        </div>
+                    </a>
+    
+                    <a href="mailto:alecrgrose@gmail.com" style="font-size: 25px;">
+                        <div class="iconContainer">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="outerDiv">
+                <div style="width: 45%; display: inline-block;">
+                    <a class="linkLabel">
+                        Email: <span><a href="mailto:alecrgrose@gmail.com" class="link">alecrgrose@gmail.com</a></span>
+                    </a>
+                </div>
+
+                <a style="padding: 0px;">|</a>
+                <div style="width: 45%; display: inline-block;">
+                    <a class="linkLabel">
+                        LinkedIn: <span><a href="http://www.linkedin.com/in/alecrgrose" class="link">linkedin.com/in/alecrgrose</a></span>
+                    </a>
+                </div>
+            </div>
+
+        </div>    
+    </div>
+
 
     <script type="module" src="javascript/navHelpers.js"></script>
     

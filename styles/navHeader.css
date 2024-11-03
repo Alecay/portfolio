@@ -112,11 +112,9 @@
     margin: 0;
 }
 
-/* Add a red background color to navigation links on hover */
 .navbar a:hover, .subnav:hover .subnavbtn 
 {
     color: rgb(74, 170, 83);
-    /* background-color: rgb(10, 60, 66); */
 }
 
 /* Style the subnav content - positioned absolute */

@@ -1,0 +1,105 @@
+.footerBar
+{
+    overflow: hidden;
+    text-align: center;
+
+    padding: 30px 30px;
+}
+
+.footerBar .centerDiv
+{
+    width: 100%;
+    max-width: 1000px;
+    text-align: center;
+    display: inline-block;
+    text-wrap: nowrap;
+    padding: 30px 0px;
+}
+
+.footerBar .outerDiv
+{
+    width: 100%;
+    max-width: 1000px;
+    text-align: center;
+    display: inline-block;
+    text-wrap: nowrap;
+    padding: 30px 0px;
+}
+
+@media screen and (min-width: 1400px) 
+{
+    .footerBar
+    {
+        text-wrap: nowrap;
+    }
+
+    .footerBar .centerDiv
+    {
+        width: 20%;
+        padding: 0px 0px;
+    }
+
+    .footerBar .outerDiv
+    {
+        width: 40%;
+        padding: 0px 0px;
+    }
+}
+
+/* Navigation links */
+.footerBar a 
+{  
+    font-size: 2.5vw;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+}
+
+.footerBar .iconContainer
+{
+    text-align: center;
+    border-radius: 25px;
+    background-color: white;
+    width: 50px;
+    height: 50px;
+    color: black;
+    margin: 15px 5px;
+    display: inline-block;
+
+    transition: 0.5s ease-in-out;    
+}
+
+.footerBar .iconContainer:hover
+{
+    background-color: rgb(74, 170, 83);
+    color: white;
+    transition: 0.5s ease-in-out;
+}
+
+.footerBar .iconContainer i
+{
+    padding-top: 12.5px;
+    font-size: 25px;
+}
+
+.footerBar .linkLabel
+{
+    padding-right: 0px;
+    font-size: 100%;
+}
+
+.footerBar .link
+{
+    padding-left: 0px;
+    text-decoration: underline;
+    font-size: 100%;
+    /* color: rgb(49, 49, 209); */
+    /* text-shadow: black -0px 1px 10px; */
+}
+
+.footerBar .link:hover
+{
+    color: rgb(74, 170, 83);
+}

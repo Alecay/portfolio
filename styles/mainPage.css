@@ -31,16 +31,16 @@ a.anchor
 
 .profileName
 {
-    font-size: 80px;
+    font-size: 5rem;
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
 .profileTitle
 {
-    font-size: 50px;
+    font-size: 3rem;
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 }
 
 .aboutDiv
@@ -127,6 +127,11 @@ a.anchor
     font-size: 25px;
 }
 
+.aboutDiv a
+{
+    text-decoration: none;
+}
+
 .skillsDiv
 {
     background-color: rgb(74, 170, 83);
@@ -185,7 +190,7 @@ a.anchor
 
 .skillsDiv .row .exampleLink
 {
-    color: blue;
+    color: rgb(49, 49, 209);
 }
 
 .projectsDiv
@@ -206,6 +211,7 @@ a.anchor
     /* max-width: 500px;
     margin-left: auto;
     margin-right: auto; */
+    margin-bottom: 33px;
 }
 
 .projectsDiv .flexContainer .flexElement
@@ -308,4 +314,36 @@ a.anchor
 {
     padding-left: 5%;
     padding-right: 5%;
+}
+
+.resumeDiv
+{
+    text-align: center;
+    background-color: rgb(74, 170, 83);
+    overflow: hidden;
+}
+
+.resumeDiv h1
+{
+    font-size: 50px;
+    margin-top: 0px;
+    padding-top: 46px;
+}
+
+.pdfHolder 
+{
+    position: relative;
+    width: 80%;
+    /* height: 50%; */
+    padding-top: 100%; /* (9 / 16) * 100 = 56.25% for a 16:9 ratio */
+    margin: 5% auto;
+}
+
+.pdfBox 
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: -30%;
 }
