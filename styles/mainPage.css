@@ -126,7 +126,7 @@ a.anchor
 
 .aboutDiv .row .iconContainer:hover
 {
-    background-color: rgb(74, 170, 83);
+    background-color: #4aaa53;
     color: white;
     transition: 0.5s ease-in-out;
 }

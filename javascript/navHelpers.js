@@ -59,3 +59,12 @@ export function hamburgerMenu()
 
     shrinkNav();
 }
+
+export function disableMobileMenu()
+{
+    const nav = document.querySelector("#navHeader");
+    const links = nav.querySelector("#mobileLinks");
+
+    links.computedStyleMap.display = "none";
+
+}

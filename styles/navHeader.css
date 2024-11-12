@@ -11,6 +11,7 @@
 
 .mobileLinks
 {
+    z-index: inherit;
     display: block;
     opacity: 100%;
     background-color: #282828e5;
@@ -22,7 +23,6 @@
     opacity: 0%;
     background-color: #282828e5;
     transition: 0.3s ease-in-out;
-    display: none;
 }
 
 .navbar button

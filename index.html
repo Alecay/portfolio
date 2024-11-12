@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alec Groseclose</title>
 
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+
     <!-- <base href="/portfolio/"> -->
     <link rel="stylesheet" href="/styles/navHeader.css">
     <link rel="stylesheet" href="/styles/footer.css">
@@ -20,7 +25,34 @@
         <script type="module">
             // Import the function from the module
             import { hamburgerMenu } from '/javascript/navHelpers.js';
-            document.querySelector(".hamburger").addEventListener("click", hamburgerMenu);
+            const button = document.querySelector(".hamburger");
+            button.addEventListener("click", hamburgerMenu);
+
+            const moblieLinks = document.querySelectorAll(".mobileLink");
+            moblieLinks.forEach(element => {
+                element.addEventListener("click", hamburgerMenu);
+            });
+
+            const mobileLinksDiv = document.querySelector("#mobileLinks");
+            mobileLinksDiv.addEventListener("transitionend", () =>
+            {
+                //mobileLinksDiv.style.display = "block";
+                if(mobileLinksDiv.classList.contains("mobileLinks"))
+                {
+                    moblieLinks.forEach(element => {
+                        element.style.display = "";
+                    });
+                }
+                else
+                {
+                    console.log("Visible");
+                    moblieLinks.forEach(element => {
+                        element.style.display = "none";
+                    });
+                }
+            });
+
+            
         </script>
 
         <div class="navbar">
@@ -39,11 +71,11 @@
         </div>   
         
         <div class="mobileLinksHidden" id="mobileLinks">
-            <a href="#about" class="mobileLink" onclick="hamburgerMenu()">About</a>
-            <a href="#skills" class="mobileLink" onclick="hamburgerMenu()">Skills</a>
-            <a href="#projects" class="mobileLink" onclick="hamburgerMenu()">Projects</a>
-            <a href="#resume" class="mobileLink" onclick="hamburgerMenu()">Resume</a>
-            <a href="#contact" class="mobileLink" onclick="hamburgerMenu()">Contact</a>
+            <a href="#about" class="mobileLink">About</a>
+            <a href="#skills" class="mobileLink">Skills</a>
+            <a href="#projects" class="mobileLink">Projects</a>
+            <a href="#resume" class="mobileLink">Resume</a>
+            <a href="#contact" class="mobileLink">Contact</a>
         </div>
 
     </div>
