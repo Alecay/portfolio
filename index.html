@@ -11,22 +11,41 @@
     <link rel="stylesheet" href="/styles/global.css">
     <link rel="stylesheet" href="/styles/mainPage.css">
 
+    <script type="module" src="/javascript/navHelpers.js"></script>
+
     <script src="https://kit.fontawesome.com/f0906ef22c.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div id="navHeader" class="sticky">        
+        <script type="module">
+            // Import the function from the module
+            import { hamburgerMenu } from '/javascript/navHelpers.js';
+            document.querySelector(".hamburger").addEventListener("click", hamburgerMenu);
+        </script>
 
         <div class="navbar">
 
             <a href="#profileDiv" class="title ignoreHover" id="name">Alec Groseclose</a>    
 
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#projects">Projects</a>
-            <a href="#resume">Resume</a>
-            <a href="#contact" style="margin-right: 10%;">Contact</a>
+            <a href="#about" class="nonMobile">About</a>
+            <a href="#skills" class="nonMobile">Skills</a>
+            <a href="#projects" class="nonMobile">Projects</a>
+            <a href="#resume" class="nonMobile">Resume</a>
+            <a href="#contact" style="margin-right: 10%;" class="nonMobile">Contact</a>
 
-        </div>    
+            <button class="hamburger">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>   
+        
+        <div class="mobileLinksHidden" id="mobileLinks">
+            <a href="#about" class="mobileLink" onclick="hamburgerMenu()">About</a>
+            <a href="#skills" class="mobileLink" onclick="hamburgerMenu()">Skills</a>
+            <a href="#projects" class="mobileLink" onclick="hamburgerMenu()">Projects</a>
+            <a href="#resume" class="mobileLink" onclick="hamburgerMenu()">Resume</a>
+            <a href="#contact" class="mobileLink" onclick="hamburgerMenu()">Contact</a>
+        </div>
+
     </div>
 
     <div class="profileDiv" id="profileDiv">
@@ -512,9 +531,6 @@
 
         </div>    
     </div>
-
-
-    <script type="module" src="javascript/navHelpers.js"></script>
     
 </body>
 </html>

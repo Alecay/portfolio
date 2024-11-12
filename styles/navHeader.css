@@ -1,3 +1,55 @@
+.hamburger
+{
+    display: block;
+    margin-right: 5%;
+}
+
+.nonMobile
+{
+    display: none;
+}
+
+.mobileLinks
+{
+    display: block;
+    opacity: 100%;
+    background-color: #282828e5;
+    transition: 0.3s ease-in-out;
+}
+
+.mobileLinksHidden
+{
+    opacity: 0%;
+    background-color: #282828e5;
+    transition: 0.3s ease-in-out;
+    display: none;
+}
+
+.navbar button
+{
+    background: none;
+    border: none;
+    color: white;
+    font-size: 25px;
+}
+
+.mobileLinks a, .mobileLinksHidden a
+{  
+    font-size: 25px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+    display: block;
+    text-align: left;
+}
+
+.mobileLinks a:hover, .mobileLinksHidden a:hover
+{
+    color: rgb(74, 170, 83);
+}
+
 /* The navigation menu */
 .navbar 
 {    
@@ -7,6 +59,7 @@
     padding-right: 5px;
 
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
 
@@ -155,4 +208,181 @@
     top: 0;
     width: 100%;
     z-index: 100;
+}
+
+@media screen and (min-width: 1450px)
+{
+    .hamburger
+    {
+        display: none;
+    }
+
+    .navbar .nonMobile
+    {
+        display: block;
+    }
+
+    .mobileLinks
+    {
+        display: none;
+    }
+
+    /* The navigation menu */
+    .navbar 
+    {    
+        overflow: hidden;
+
+        padding-left: 5px;
+        padding-right: 5px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        transition: 0.5s ease-in-out;
+        scroll-behavior: smooth;
+        z-index: 100;
+    }
+
+    .navShrink
+    {
+        background-color: #333;
+        transition: 0.5s ease-in-out;
+    }
+
+    .navShrink .titleShrink
+    {
+        opacity: 100%;
+        font-size: 25px;
+        font-weight: bold;
+        color: white;
+        text-align: left;
+        padding: 14px 16px;
+        text-decoration: none;
+        
+        transition: .5s ease-in-out;
+        transition-delay: .5s;
+
+        margin-right: auto;
+        margin-left: 10%;
+        cursor: default;
+    }
+
+    .navbar .title
+    {
+        opacity: 0%;
+        font-size: 25px;
+        font-weight: bold;
+        padding: 30px 16px;
+
+        transition: .5s ease-in-out;
+        transition-delay: 0s;
+
+        margin-right: auto;
+        margin-left: 10%;
+        cursor: pointer;
+
+    }
+
+    .navbar .titleCentered
+    {    
+        float: unset;
+        margin: auto;
+        font-size: 25px;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    .navbar .subTitle
+    {
+        float: left;
+        font-size: 12px;
+        color: white;
+        text-align: center;
+        padding: 30px 5px 14px 5px;
+        text-decoration: none;
+    }
+
+    .navbar .ignoreHover:hover
+    {
+        color: white;
+    }
+
+    /* Navigation links */
+    .navbar a 
+    {  
+        font-size: 25px;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        transition: 0.3s ease-in-out;
+    }
+
+    /* The subnavigation menu */
+    .subnav 
+    {
+        float: left;
+        overflow: hidden;
+    }
+
+    /* Subnav button */
+    .subnav .subnavbtn 
+    {
+        font-size: 16px;
+        border: none;
+        outline: none;
+        color: white;
+        padding: 14px 16px;
+        background-color: inherit;
+        font-family: inherit;
+        margin: 0;
+    }
+
+    .navbar a:hover, .subnav:hover .subnavbtn 
+    {
+        color: rgb(74, 170, 83);
+    }
+
+    /* Style the subnav content - positioned absolute */
+    .subnav-content 
+    {
+        display: none;
+        position: absolute;
+        left: 0;
+        background-color:rgb(10, 60, 66);
+        width: 100%;
+        z-index: 1;
+    }
+
+    /* Style the subnav links */
+    .subnav-content a 
+    {
+        float: left;
+        color: white;
+        text-decoration: none;
+    }
+
+    /* Add a grey background color on hover */
+    .subnav-content a:hover 
+    {
+        background-color: #eee;
+        color: black;
+    }
+
+    /* When you move the mouse over the subnav container, open the subnav content */
+    .subnav:hover .subnav-content 
+    {
+        display: block;
+    }
+
+    .sticky 
+    {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 100;
+    }
 }
