@@ -25,20 +25,64 @@
 </head>
 <body>
     <div id="navHeader" class="sticky">        
+        <script type="module">
+            // Import the function from the module
+            import { hamburgerMenu } from '/javascript/navHelpers.js';
+            const button = document.querySelector(".hamburger");
+            button.addEventListener("click", hamburgerMenu);
 
-        <div class="navbar navShrink">
+            const moblieLinks = document.querySelectorAll(".mobileLink");
+            moblieLinks.forEach(element => {
+                element.addEventListener("click", hamburgerMenu);
+            });
+
+            const mobileLinksDiv = document.querySelector("#mobileLinks");
+            mobileLinksDiv.addEventListener("transitionend", () =>
+            {
+                //mobileLinksDiv.style.display = "block";
+                if(mobileLinksDiv.classList.contains("mobileLinks"))
+                {
+                    moblieLinks.forEach(element => {
+                        element.style.display = "";
+                    });
+                }
+                else
+                {
+                    console.log("Visible");
+                    moblieLinks.forEach(element => {
+                        element.style.display = "none";
+                    });
+                }
+            });
+
+            
+        </script>
+
+        <div class="navbar navShrink noShrink">
             <a href="/index.html" class="titleShrink ignoreHover" id="name">Alec Groseclose</a>    
-            <a href="/index.html#about">About</a>
-            <a href="/index.html#skills">Skills</a>
-            <a href="/index.html#projects">Projects</a>
-            <a href="/index.html#resume">Resume</a>
-            <a href="#contact" style="margin-right: 10%;">Contact</a>
+            <a href="/index.html#about" class="nonMobile">About</a>
+            <a href="/index.html#skills" class="nonMobile">Skills</a>
+            <a href="/index.html#projects" class="nonMobile">Projects</a>
+            <a href="/index.html#resume" class="nonMobile">Resume</a>
+            <a href="#contact" style="margin-right: 10%;" class="nonMobile">Contact</a>
+
+            <button class="hamburger">
+                <i class="fa fa-bars"></i>
+            </button>
 
         </div>    
+
+        <div class="mobileLinksHidden" id="mobileLinks">
+            <a href="/index.html#about" class="mobileLink">About</a>
+            <a href="/index.html#skills" class="mobileLink">Skills</a>
+            <a href="/index.html#projects" class="mobileLink">Projects</a>
+            <a href="/index.html#resume" class="mobileLink">Resume</a>
+            <a href="#contact" class="mobileLink">Contact</a>
+        </div>
     </div>
 
     <div class="backButton">
-        <button onclick="window.location='/index.html'">
+        <button onclick="window.location='/index.html#projects'">
             <i class="fa-solid fa-circle-arrow-left"></i>
         </button>        
     </div>

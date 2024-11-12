@@ -11,7 +11,7 @@ function shrinkNav()
 
     const visible = links.classList.contains("mobileLinks");
 
-    if(window.scrollY > 150 || visible)
+    if(window.scrollY > 150 || visible || nav.classList.contains("noShrink"))
     {
         nav.classList.add("navShrink");
         name.classList.add("titleShrink");
