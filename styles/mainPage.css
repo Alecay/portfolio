@@ -31,14 +31,14 @@ a.anchor
 
 .profileName
 {
-    font-size: 5rem;
+    font-size: 4rem;
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
 .profileTitle
 {
-    font-size: 3rem;
+    font-size: 2rem;
     margin-top: 10px;
     margin-bottom: 30px;
 }
@@ -96,6 +96,16 @@ a.anchor
     .aboutDiv .row .flexContainer .flexElement
     {
         margin: 30px;
+    }
+
+    .profileName
+    {
+        font-size: 5rem;
+    }
+
+    .profileTitle
+    {
+        font-size: 3rem;
     }
 
 }
