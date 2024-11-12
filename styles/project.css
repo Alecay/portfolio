@@ -1,0 +1,110 @@
+.mainDiv
+{
+    background-color: rgb(211, 207, 207);
+    /*  rgb(74, 170, 83); */
+    /* min-height: 3000px; */
+    padding-bottom: 80px;
+    padding-top: 5%;
+    text-align: center;
+    color: black;
+}
+
+.mainDiv .content
+{
+    max-width: 80%; 
+    margin: auto auto;
+}
+
+.backButton
+{
+    position: fixed;
+    top: 100px;
+    left: 3%;
+}
+
+.backButton i
+{
+    width: 50px;
+    height: 50px;
+    font-size: 50px;
+    color: #333;
+}
+
+.backButton button
+{
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+h1
+{
+    font-size: 3rem;
+}
+
+h2
+{
+    font-size: 2rem;
+}
+
+p, ul
+{
+    font-size: 1.25rem;
+}
+
+img
+{
+    object-fit: cover;
+    width: 80%;
+
+    border-top: solid #333 5px;
+    border-bottom: solid #333 5px;
+}
+
+.textSection
+{
+    /* padding-left: 5%; */
+    text-align: left;
+}
+
+.textSection .centered
+{
+    text-align: center;
+}
+
+img.subImage
+{
+    object-fit: cover;
+    width: 50%;
+
+    border-top: solid #333 5px;
+    border-bottom: solid #333 5px;
+    margin: 40px auto;
+}
+
+.codePanel
+{
+    margin: 40px auto;
+}
+
+.codePanel pre
+{
+    text-align: left;
+    margin: 0px;
+    border-top: solid #333 5px;
+    border-bottom: solid #333 5px;
+}
+
+.codePanel .titleBar
+{
+    min-height: 40px;
+    background-color: #333;
+    padding: 0px;
+}
+
+.codePanel .footerBar
+{
+    min-height: 40px;
+    background-color: #333;
+    padding: 0px;
+}
