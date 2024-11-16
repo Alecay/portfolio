@@ -156,12 +156,12 @@ a.anchor
 
 .skillsDiv .row .title
 {
-    font-size: 50px;
+    font-size: 350%;
 }
 
 .skillsDiv .skillTitle
 {
-    font-size: 30px;
+    font-size: 220%;
 }
 
 .skillsDiv .row .flexContainer
@@ -200,7 +200,20 @@ a.anchor
 
 .skillsDiv .row .exampleLink
 {
+    /* color: rgb(49, 49, 209); */
+    color: white;
+    font-weight: bold;
+    transition: 0.2s ease-in-out;
+}
+
+.skillsDiv .row .exampleLink:hover
+{
     color: rgb(49, 49, 209);
+}
+
+.skillsDiv p
+{
+    font-size: 120%;
 }
 
 .projectsDiv
@@ -240,7 +253,7 @@ a.anchor
 
 .projectsDiv h1
 {
-    font-size: 50px;
+    font-size: 350%;
     margin-top: 25px;
 }
 
@@ -335,7 +348,7 @@ a.anchor
 
 .resumeDiv h1
 {
-    font-size: 50px;
+    font-size: 350%;
     margin-top: 0px;
     padding-top: 46px;
 }
