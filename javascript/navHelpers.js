@@ -35,7 +35,7 @@ function showNav()
     name.classList.remove("title");   
 }
 
-function scrollTo(element)
+export function scrollTo(element)
 {
     element.scrollIntoView({ behavior: "smooth"});
 }

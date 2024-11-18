@@ -214,6 +214,7 @@ a.anchor
 .skillsDiv p
 {
     font-size: 120%;
+    text-wrap: pretty;
 }
 
 .projectsDiv
