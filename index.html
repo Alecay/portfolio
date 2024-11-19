@@ -36,7 +36,6 @@
             const mobileLinksDiv = document.querySelector("#mobileLinks");
             mobileLinksDiv.addEventListener("transitionend", () =>
             {
-                //mobileLinksDiv.style.display = "block";
                 if(mobileLinksDiv.classList.contains("mobileLinks"))
                 {
                     moblieLinks.forEach(element => {
@@ -45,7 +44,6 @@
                 }
                 else
                 {
-                    console.log("Visible");
                     moblieLinks.forEach(element => {
                         element.style.display = "none";
                     });
@@ -515,7 +513,7 @@
     <div class="resumeDiv">
         <h1 style="text-align: center;">Resume</h1>
 
-        <!-- <div class="pdfHolder" style="display: none;">
+        <!-- <div class="pdfHolder">
             <div class="pdfBox">
                 <object data="docs/Resume.pdf" type="application/pdf" title="Resume" style="width: 100%; height: 70%; overflow: hidden;">
                     <embed src="docs/Resume.pdf" type="application/pdf" title="Resume" style="pointer-events: none;">
@@ -527,10 +525,11 @@
         <div class="pdfHolder">
             <div class="pdfBox">
                 <iframe 
-                    src="docs/Resume.pdf" 
+                    src=""
+                    data-src="docs/Resume.pdf"
                     title="Resume" 
-                    style="width: 100%; height: 70%; border: none;" 
-                    loading="lazy">
+                    style="width: 100%; height: 70%; border: none;"
+                    loading="eager">
                     <p>This browser does not support PDFs. Please download the PDF to view it: 
                        <a href="docs/Resume.pdf">Download PDF</a>.
                     </p>
@@ -587,14 +586,29 @@
 
         </div>    
     </div>
-    
+
     <script>
-        //Reset scroll position after PDF loads
-        window.onload = () => {
-            setTimeout(() => {
-                window.scrollTo(0, 0);
-            }, 100); // Delay ensures reset happens after the PDF loads.
-        };
+        //Set the iframe to load only when it become visible
+        const target = document.querySelector(".resumeDiv");
+        const pdfHolder = target.querySelector(".pdfHolder");
+        const iframe = target.querySelector("iframe");
+        function targetInView()
+        {
+            const rect = target.getBoundingClientRect();
+            const isInView = rect.top <= window.innerHeight && rect.top + rect.height > 0;
+            return isInView;
+        }
+
+        function loadInView()
+        {
+            if(!iframe.src.includes("docs/Resume.pdf") && targetInView())
+            {
+                console.log("Set pdfHolder visible");
+                iframe.src = "docs/Resume.pdf"
+            }
+        }
+
+        window.addEventListener('scroll', loadInView);
     </script>
 </body>
 </html>
