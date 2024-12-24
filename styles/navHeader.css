@@ -33,7 +33,7 @@
     font-size: 25px;
 }
 
-.mobileLinks a, .mobileLinksHidden a
+.mobileLinks a
 {  
     font-size: 25px;
     color: white;
@@ -43,6 +43,11 @@
     transition: 0.3s ease-in-out;
     display: block;
     text-align: left;
+}
+
+.mobileLinksHidden a
+{
+    display: none;
 }
 
 .mobileLinks a:hover, .mobileLinksHidden a:hover
