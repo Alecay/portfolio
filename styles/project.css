@@ -47,12 +47,21 @@ h2
     font-size: 2rem;
 }
 
-p, ul
+p, ul, ol
 {
     font-size: 1.25rem;
 }
 
 img
+{
+    object-fit: cover;
+    width: 80%;
+
+    border-top: solid #333 5px;
+    border-bottom: solid #333 5px;
+}
+
+video
 {
     object-fit: cover;
     width: 80%;

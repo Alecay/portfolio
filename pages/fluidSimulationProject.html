@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alec Groseclose</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+
+    <link rel="stylesheet" href="/styles/navHeader.css">
+    <link rel="stylesheet" href="/styles/footer.css">
+    <link rel="stylesheet" href="/styles/global.css">
+    <link rel="stylesheet" href="/styles/project.css">
+
+    <script src="https://kit.fontawesome.com/f0906ef22c.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    
+</head>
+<body>
+    <div id="navHeader" class="sticky">        
+        <script type="module">
+            // Import the function from the module
+            import { hamburgerMenu } from '/javascript/navHelpers.js';
+            const button = document.querySelector(".hamburger");
+            button.addEventListener("click", hamburgerMenu);
+
+            const moblieLinks = document.querySelectorAll(".mobileLink");
+            moblieLinks.forEach(element => {
+                element.addEventListener("click", hamburgerMenu);
+            });
+
+            const mobileLinksDiv = document.querySelector("#mobileLinks");
+            mobileLinksDiv.addEventListener("transitionend", () =>
+            {
+                //mobileLinksDiv.style.display = "block";
+                if(mobileLinksDiv.classList.contains("mobileLinks"))
+                {
+                    moblieLinks.forEach(element => {
+                        element.style.display = "";
+                    });
+                }
+                else
+                {
+                    console.log("Visible");
+                    moblieLinks.forEach(element => {
+                        element.style.display = "none";
+                    });
+                }
+            });
+
+            
+        </script>
+
+        <div class="navbar navShrink noShrink">
+            <a href="/index.html#profile" class="titleShrink ignoreHover" id="name">Alec Groseclose</a>    
+            <a href="/index.html#about" class="nonMobile">About</a>
+            <a href="/index.html#skills" class="nonMobile">Skills</a>
+            <a href="/index.html#projects" class="nonMobile">Projects</a>
+            <a href="/index.html#resume" class="nonMobile">Resume</a>
+            <a href="#contact" style="margin-right: 10%;" class="nonMobile">Contact</a>
+
+            <button class="hamburger">
+                <i class="fa fa-bars"></i>
+            </button>
+
+        </div>    
+
+        <div class="mobileLinksHidden" id="mobileLinks">
+            <a href="/index.html#about" class="mobileLink">About</a>
+            <a href="/index.html#skills" class="mobileLink">Skills</a>
+            <a href="/index.html#projects" class="mobileLink">Projects</a>
+            <a href="/index.html#resume" class="mobileLink">Resume</a>
+            <a href="#contact" class="mobileLink">Contact</a>
+        </div>
+    </div>
+
+    <div class="backButton">
+        <button onclick="window.location='/index.html#projects'">
+            <i class="fa-solid fa-circle-arrow-left"></i>
+        </button>        
+    </div>
+
+    <div style="min-height: 40px;"></div>
+
+    <div class="mainDiv">
+        <div class="content">
+            <h1>GPU Fluid Simulation - <span style="font-style: italic;">Compute Creeper</span></h1>
+            <br>
+            <!-- <img src="/images/fluid_simulation_preview.PNG"> -->
+            <video src="/videos/sompute_creeper_main_menu.mp4" autoplay controls loop></video>
+            
+            <div class="textSection">
+                <h2>Inspiration and Timeline</h2>
+                <p>
+                    Inspired by the fluid dynamics of <span style="font-style: italic;">Creeper World 3</span>, I set out to push the boundaries of simulation scale and efficiency.
+                    Creeper World games revolve around a unique strategy concept where players combat an ever-expanding, 
+                    fluid-like entity called "<span style="color:darkblue; font-weight: bold;">Creeper</span>", which flows dynamically across the map, engulfing terrain and structures.
+                    My goal was to replicate the core mechanics of the Creeper World series while dramatically expanding map size and simulation capacity.
+                    I beagn working on recreating these mechanics in my own proof of concept game aptly named <span style="font-style: italic;">Compute Creeper</span> 
+                    in November of 2023 and culminated in January 2024.
+                </p>
+                <div class="centered">
+                    <img class="subImage" src="/images/creeper_world_3.png" style="width: 50%;">
+                    <p>
+                        Screenshot from <span style="font-style: italic;">Creeper World 3</span> showing the largest possible map size in the game of 
+                        <span style="font-weight:bold;">250x250 cells.</span>
+                    </p>
+                </div>
+                
+
+
+                <h2>Goals of Project</h2>
+                <p>
+                    During the development of this project there were a few core concepts and mechanics from <span style="font-style: italic;">Creeper World 3</span>
+                    I wanted to recreate with my prototype:
+                </p>
+                <ul>
+                    <li>Fluid simulation of a <span style="color:darkblue; font-weight: bold;">Creeper</span>-like material</li>
+                    <li>Generation of 2D terrain using perlin noise</li>
+                    <li>Map customization and creation</li>
+                    <li>Basic unit AI and interactions</li>
+                </ul>
+
+                <p>
+                    Each of these mechanics pose their own challenges especially considering I was also aiming for an increased max map size of
+                    <span style="font-weight:bold;">1000x1000 cells</span> (a total cell count of 1 million cells!).
+                </p>
+
+                <h2>Initial Algorithm of Fluid Simulation</h2>
+                <p>
+                    Initally during development of this project I had a method that used for loops to loop over each cell 
+                    and update the contents of the cell, which looked like this (Written in C#):
+                </p>
+
+                <div class="codePanel">
+                    <pre><code>
+    //Update each cell in the map grid
+    private void UpdateCells()
+    {
+        for (int y = 0; y < mapSize.y; y++)
+        {
+            for (int x = 0; x < mapSize.x; x++)
+            {
+                UpdateCell(x, y);
+            }
+        }
+    }
+
+    //Update a single cell
+    private void UpdateCell(int x, int y)
+    {
+        CellData cell = grid[x, y];
+
+        //Check top neighbor
+        if(y < mapSize.y - 1)
+        {
+            // Get cell above this one
+            CellData topCell = grid[x, y + 1];
+
+            // Check if cell has more fluid
+            if(topCell.fluidAmount > cell.fluidAmount)
+            {
+                // Change the amount of fluid in both cells based on some flow rate
+                float change = flowRate * (topCell.fluidAmount - cell.fluidAmount);
+                cell.fluidAmount += change;
+                topCell.fluidAmount -= change;
+            }
+        }
+
+        //Check other neighbors and do the same
+    }
+                    </code></pre>
+                </div>
+
+                <p>
+                    This solution was fairly error free, easy to debug, and relatively easy to understand; however, it was clear that 
+                    this method was fairly expensive as the map size grew. Using this method I could easily simulate a 100x100 map 
+                    with a frame rate of around 60 but to reach my goal of 1000x1000 cells I was going to have to do some optimization. 
+                    My first thought was to use multithreading and create a series of threads that would each work on and update a subset of
+                    cells of the map. This definitely helped, but lead to a different problem, each thread was trying to access the same data when updating
+                    neigboring cells. I needed a way for each cell to update without modifying other cells, but how could this be achieved?
+                </p>
+
+                <h2>Cellular Automata</h2>
+                <p>
+                    I began researching more about this idea of self updating cells and ran across the concept of Cellular Automata and 
+                    <span style="font-style: italic;">Conway's Game of Life</span> and instantly knew that this was something that I could apply
+                    to by algorithm to solve my problem. In Conway's simulation each cell can be either alive (black) or dead (white), and its state updates based on simple rules:
+                </p>
+                <ol>
+                    <li>Survival: A live cell with 2 or 3 live neighbors stays alive.</li>
+                    <li>Birth: A dead cell with exactly 3 live neighbors becomes alive</li>
+                    <li>Death: In all other cases, cells die or remain dead due to underpopulation or overpopulation.</li>
+                </ol>
+
+                <div class="centered">
+                    <img class="subImage" src="/images/conwayGOL.gif" style="width: 50%;">
+                    <p>Simulation of "creatures" in <span style="font-style: italic;">Conway's Game of Life</span> eating and reproducing.</p>
+                </div>
+
+                <p>
+                    Using this same idea I was able to come up with my own simple rules for my fluid simulation:
+                </p>
+                <ol>
+                    <li>Flow In: Cells increase thier fluid amount if they have a neighbor with more fluid than they do</li>
+                    <li>Flow Out: Cells decrease thier fluid amount if they have a neighbor with less fluid than they do</li>
+                </ol>
+
+                <h2>Fluid Simulation - <span style="color:darkblue; font-weight: bold;">Creeper</span></h2>
+
+            </div>
+
+            <div class="codePanel">
+                <pre><code>
+public void Simulate()
+{
+
+    int numberOfThreads = 8;
+
+    InitializeBuffers();
+
+    compute.SetInt("XWidth", width);
+    compute.SetInt("YWidth", height);
+
+    compute.SetFloat("FlowMin", FlowMin);
+    compute.SetFloat("FlowMax", FlowMax);
+
+    compute.SetInt("Simulation_Count", simulationCount);
+
+    Density_Buffer.SetData(denisty);
+
+    //calls compute kenrel, each pixel will have it's own thread because of the size used
+    compute.Dispatch(kernel, Mathf.CeilToInt(width / (float)numberOfThreads), Mathf.CeilToInt(height / (float)numberOfThreads), 1);
+
+    if (denisty == null || denisty.Length != width * height)
+    {
+        denisty = new float[width * height];
+    }
+
+    Future_Density_Buffer.GetData(denisty);
+
+    ReleaseBuffers();
+
+    simulationCount++;
+}
+                </code></pre>
+            </div>
+
+
+        </div>
+    </div>
+
+    <a id="contact" class="anchor"></a>
+    <div id="footer">        
+
+        <div class="footerBar">
+
+            <div class="outerDiv" style="font-size: 100%;">
+                <a style="font-size: 100%;">Copyright © Alec Groseclose 2024</a>
+            </div>
+
+            <div class="centerDiv">
+                <div style="text-align: center;">
+                    <a href="http://www.linkedin.com/in/alecrgrose" target="_blank" style="font-size: 25px;">
+                        <div class="iconContainer">
+                            <i class="fa-brands fa-linkedin"></i>
+                        </div>
+                    </a> 
+    
+                    <a href="https://github.com/Alecay" target="_blank" style="font-size: 25px;">
+                        <div class="iconContainer">
+                            <i class="fa-brands fa-github"></i>
+                        </div>
+                    </a>
+    
+                    <a href="mailto:alecrgrose@gmail.com" style="font-size: 25px;">
+                        <div class="iconContainer">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="outerDiv">
+                <div class="linkDiv">
+                    <a class="linkLabel">
+                        Email: <span><a href="mailto:alecrgrose@gmail.com" class="link">alecrgrose@gmail.com</a></span>
+                    </a>
+                </div>
+
+                <a class="seperator">|</a>
+                <div class="linkDiv">
+                    <a class="linkLabel">
+                        LinkedIn: <span><a href="http://www.linkedin.com/in/alecrgrose" class="link">linkedin.com/in/alecrgrose</a></span>
+                    </a>
+                </div>
+            </div>
+
+        </div>    
+    </div>
+
+    
+</body>
+</html>
