@@ -1,0 +1,47 @@
+.sampleTable
+{
+    border-collapse: collapse;
+    margin: auto;
+    display: inline-block;
+    table-layout: fixed;
+}
+
+.sampleTable tr
+{
+    width: 100px;
+}
+
+.sampleTable td
+{
+    border: solid 3px;
+    font-size: 1.5rem;
+    width: 5rem;
+    height: 5rem;
+    text-align: center;
+}
+
+.sampleTable .filled
+{
+    background-color: darkblue;
+    color: white;
+    border-color: black;
+}
+
+.sampleTable .error
+{
+    background-color: darkred;
+    color: white;
+    border-color: black;
+}
+
+.sampleTable .highlighted
+{
+    background-color: yellow;
+    color: black;
+    border-color: black;
+}
+
+.sampleTable i
+{
+    font-size: 5rem;
+}

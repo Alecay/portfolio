@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/styles/footer.css">
     <link rel="stylesheet" href="/styles/global.css">
     <link rel="stylesheet" href="/styles/project.css">
+    <link rel="stylesheet" href="/styles/fluidSim.css">
 
     <script src="https://kit.fontawesome.com/f0906ef22c.js" crossorigin="anonymous"></script>
 
@@ -99,12 +100,12 @@
             <div class="textSection">
                 <h2>Inspiration and Timeline</h2>
                 <p>
-                    Inspired by the fluid dynamics of <span style="font-style: italic;">Creeper World 3</span>, I set out to push the boundaries of simulation scale and efficiency.
+                    Inspired by the fluid dynamics of <span style="font-style: italic;">Creeper World 3</span>, I set out to push the boundaries of fluid simulation scale and efficiency.
                     Creeper World games revolve around a unique strategy concept where players combat an ever-expanding, 
                     fluid-like entity called "<span style="color:darkblue; font-weight: bold;">Creeper</span>", which flows dynamically across the map, engulfing terrain and structures.
                     My goal was to replicate the core mechanics of the Creeper World series while dramatically expanding map size and simulation capacity.
-                    I beagn working on recreating these mechanics in my own proof of concept game aptly named <span style="font-style: italic;">Compute Creeper</span> 
-                    in November of 2023 and culminated in January 2024.
+                    I beagn working on recreating these mechanics in my own proof of concept game, using the GPU and compute shaders, aptly named 
+                    <span style="font-style: italic;">Compute Creeper</span> in November of 2023 and culminated in January 2024.
                 </p>
                 <div class="centered">
                     <img class="subImage" src="/images/creeper_world_3.png" style="width: 50%;">
@@ -118,8 +119,8 @@
 
                 <h2>Goals of Project</h2>
                 <p>
-                    During the development of this project there were a few core concepts and mechanics from <span style="font-style: italic;">Creeper World 3</span>
-                    I wanted to recreate with my prototype:
+                    During the development of this project there were a few core mechanics from <span style="font-style: italic;">Creeper World 3</span>
+                    I wanted to implement in my prototype:
                 </p>
                 <ul>
                     <li>Fluid simulation of a <span style="color:darkblue; font-weight: bold;">Creeper</span>-like material</li>
@@ -135,8 +136,8 @@
 
                 <h2>Initial Algorithm of Fluid Simulation</h2>
                 <p>
-                    Initally during development of this project I had a method that used for loops to loop over each cell 
-                    and update the contents of the cell, which looked like this (Written in C#):
+                    Initally during development of this project I had a method that used for loops to loop over  
+                    and update the contents of the each cell, which looked like this (Written in C#):
                 </p>
 
                 <div class="codePanel">
@@ -159,7 +160,7 @@
         CellData cell = grid[x, y];
 
         //Check top neighbor
-        if(y < mapSize.y - 1)
+        if(y < mapSize.y - 1) // Check if in bounds of map
         {
             // Get cell above this one
             CellData topCell = grid[x, y + 1];
@@ -181,18 +182,21 @@
 
                 <p>
                     This solution was fairly error free, easy to debug, and relatively easy to understand; however, it was clear that 
-                    this method was fairly expensive as the map size grew. Using this method I could easily simulate a 100x100 map 
+                    this method was increasingly expensive as the map size grew. Using this method I could easily simulate a 100x100 map 
                     with a frame rate of around 60 but to reach my goal of 1000x1000 cells I was going to have to do some optimization. 
+                </p>
+                <p>
                     My first thought was to use multithreading and create a series of threads that would each work on and update a subset of
                     cells of the map. This definitely helped, but lead to a different problem, each thread was trying to access the same data when updating
-                    neigboring cells. I needed a way for each cell to update without modifying other cells, but how could this be achieved?
+                    neighboring cells. I needed a way for each cell to update without modifying other cells, but how could this be achieved?
                 </p>
 
                 <h2>Cellular Automata</h2>
                 <p>
                     I began researching more about this idea of self updating cells and ran across the concept of Cellular Automata and 
                     <span style="font-style: italic;">Conway's Game of Life</span> and instantly knew that this was something that I could apply
-                    to by algorithm to solve my problem. In Conway's simulation each cell can be either alive (black) or dead (white), and its state updates based on simple rules:
+                    to my algorithm to solve my problem. In Conway's simulation each cell can be either alive (black) or dead (white), and its state 
+                    updates based on 3 simple rules:
                 </p>
                 <ol>
                     <li>Survival: A live cell with 2 or 3 live neighbors stays alive.</li>
@@ -206,54 +210,165 @@
                 </div>
 
                 <p>
-                    Using this same idea I was able to come up with my own simple rules for my fluid simulation:
+                    Using this same principles I was able to come up with my own simple rules for my fluid simulation:
                 </p>
                 <ol>
-                    <li>Flow In: Cells increase thier fluid amount if they have a neighbor with more fluid than they do</li>
-                    <li>Flow Out: Cells decrease thier fluid amount if they have a neighbor with less fluid than they do</li>
+                    <li>Flow In: A cell will increase its fluid amount for each neighbor that has more fluid than this cell</li>
+                    <li>Flow Out: A cell will decrease its fluid amount for each neighbor that has less fluid than this cell</li>
                 </ol>
 
-                <h2>Fluid Simulation - <span style="color:darkblue; font-weight: bold;">Creeper</span></h2>
+                <p>
+                    This concept was surprising simple but its implementation was tricky, especially when trying to maintain a consistent amount of fluid within the simulation.
+                    I ran into problems of how to calcualte how much fluid should flow into and out of each cell. For instance given a 3x3 grid of cells with the starting configuration
+                    shown below let's try to calculate the change in fluid for the cell highlighted in yellow:
+                </p>
 
-            </div>
+                <div style="text-align: center;">
+                    <table class="sampleTable">
+                        <tr>
+                            <td>0.0</td><td>0.0</td><td>0.0</td>
+                        </tr>
+                        <tr>
+                            <td class="highlighted">0.0</td><td class="filled">4.0</td><td>0.0</td>
+                        </tr>
+                        <tr>
+                            <td>0.0</td><td>0.0</td><td>0.0</td>
+                        </tr>
+                    </table>
 
-            <div class="codePanel">
-                <pre><code>
-public void Simulate()
-{
+                    <!-- <i class="fa-solid fa-right-long" style="font-size: 2rem; margin-top: auto;"></i> -->
+                </div>
 
-    int numberOfThreads = 8;
+                <p>
+                    We know that the highlighted cell satisfies Rule 1: 
+                    "<span style="font-style: italic;">A cell will increase its fluid amount for each neighbor that has more fluid than this cell</span>" 
+                    because the center cell has 4.0 total fluid whereas the highlighted cell has 0.0. Therefore this cell should increase its fluid amount this simulation step. 
+                    Lets call this increase in fluid this step: <span style="font-weight: bold;">flowInAmount</span>. Then <span style="font-weight: bold;">flowInAmount</span>
+                    can be calculated using the following code snippet:
+                </p>
 
-    InitializeBuffers();
+                <div class="codePanel">
+                    <pre><code>
+    // Percentage of fluid that should flow to neighboring cells each step
+    float flowRate = 0.1f;
+    // Amount that flows into this cell this step
+    float flowInAmount = 0.0f;
 
-    compute.SetInt("XWidth", width);
-    compute.SetInt("YWidth", height);
-
-    compute.SetFloat("FlowMin", FlowMin);
-    compute.SetFloat("FlowMax", FlowMax);
-
-    compute.SetInt("Simulation_Count", simulationCount);
-
-    Density_Buffer.SetData(denisty);
-
-    //calls compute kenrel, each pixel will have it's own thread because of the size used
-    compute.Dispatch(kernel, Mathf.CeilToInt(width / (float)numberOfThreads), Mathf.CeilToInt(height / (float)numberOfThreads), 1);
-
-    if (denisty == null || denisty.Length != width * height)
+    // Looping over each of the eight neighboring cells
+    for(int i = 0; i < 8; i++)
     {
-        denisty = new float[width * height];
+        // If neighbor has more fluid increase the flowInAmount
+        if(neighbor[i].fluidAmount > cell.fluidAmount)
+            flowInAmount += flowRate * (neighbor[i].fluidAmount - cell.fluidAmount);
     }
+                    </code></pre>
+                </div>
 
-    Future_Density_Buffer.GetData(denisty);
+                <p>
+                    So what's the issue with this calculation? Nothing it works, it works fine when <span style="font-weight: bold;">flowRate</span> 
+                    remains under 0.125 (1/8) however if the <span style="font-weight: bold;">flowRate</span> becomes higher than
+                    this threshold cells may increase more than they should and inadvertently create more fluid than was initially held within the map.
+                    Consider the following scenarios:
+                </p>
 
-    ReleaseBuffers();
+                <p><span style="font-weight: bold;">flowRate</span> = 0.1</p>
+                <table>
+                    <tr>
+                        <td>
+                            <p style="margin: auto; text-align: center;">Step 0</p>
+                            <table class="sampleTable">
+                                <tr>
+                                    <td>0.0</td><td>0.0</td><td>0.0</td>
+                                </tr>
+                                <tr>
+                                    <td>0.0</td><td class="filled">4.0</td><td>0.0</td>
+                                </tr>
+                                <tr>
+                                    <td>0.0</td><td>0.0</td><td>0.0</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <i class="fa-solid fa-right-long" style="font-size: 2rem; padding-top: 1.5rem;"></i>
+                        </td>
+                        <td>
+                            <p style="margin: auto; text-align: center;">Step 1</p>
+                            <table class="sampleTable">
+                                <tr>
+                                    <td class="filled">0.4</td><td class="filled">0.4</td><td class="filled">0.4</td>
+                                </tr>
+                                <tr>
+                                    <td class="filled">0.4</td><td class="filled">0.8</td><td class="filled">0.4</td>
+                                </tr>
+                                <tr>
+                                    <td class="filled">0.4</td><td class="filled">0.4</td><td class="filled">0.4</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <i class="fa-solid fa-right-long" style="font-size: 2rem; padding-top: 1.5rem;"></i>
+                        </td>
+                        <td>
+                            <p style="margin: auto; text-align: center;">Step 2</p>
+                            <table class="sampleTable">
+                                <tr>
+                                    <td class="filled">0.44</td><td class="filled">0.44</td><td class="filled">0.44</td>
+                                </tr>
+                                <tr>
+                                    <td class="filled">0.44</td><td class="filled">0.48</td><td class="filled">0.44</td>
+                                </tr>
+                                <tr>
+                                    <td class="filled">0.44</td><td class="filled">0.44</td><td class="filled">0.44</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
 
-    simulationCount++;
-}
-                </code></pre>
+                <p>After all steps have completed the sum of the fluid in all cells is: 4.0</p>
+
+                <p><span style="font-weight: bold;">flowRate</span> = 0.2</p>
+                <table>
+                    <tr>
+                        <td>
+                            <p style="margin: auto; text-align: center;">Step 0</p>
+                            <table class="sampleTable">
+                                <tr>
+                                    <td>0.0</td><td>0.0</td><td>0.0</td>
+                                </tr>
+                                <tr>
+                                    <td>0.0</td><td class="filled">4.0</td><td>0.0</td>
+                                </tr>
+                                <tr>
+                                    <td>0.0</td><td>0.0</td><td>0.0</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <i class="fa-solid fa-right-long" style="font-size: 2rem; padding-top: 1.5rem;"></i>
+                        </td>
+                        <td>
+                            <p style="margin: auto; text-align: center;">Step 1</p>
+                            <table class="sampleTable">
+                                <tr>
+                                    <td class="filled">0.8</td><td class="filled">0.8</td><td class="filled">0.8</td>
+                                </tr>
+                                <tr>
+                                    <td class="filled">0.8</td><td class="error">-2.4</td><td class="filled">0.8</td>
+                                </tr>
+                                <tr>
+                                    <td class="filled">0.8</td><td class="filled">0.8</td><td class="filled">0.8</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+
+                <p>After only one simulation the center cell has become negative so clearly there is an issue with this apporach.</p>
+
+                <h2>Why the GPU?</h2>
+
             </div>
-
-
         </div>
     </div>
 
