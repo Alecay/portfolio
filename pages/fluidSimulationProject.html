@@ -271,6 +271,7 @@
                     Consider the following scenarios:
                 </p>
 
+                <p><span style="font-weight: bold; text-decoration-line: underline; font-size: 1.5rem;">Scenario 1:</span></p>
                 <p><span style="font-weight: bold;">flowRate</span> = 0.1</p>
                 <table>
                     <tr>
@@ -327,6 +328,8 @@
 
                 <p>After all steps have completed the sum of the fluid in all cells is: 4.0</p>
 
+                <br>
+                <p><span style="font-weight: bold; text-decoration-line: underline; font-size: 1.5rem;">Scenario 2:</span></p>
                 <p><span style="font-weight: bold;">flowRate</span> = 0.2</p>
                 <table>
                     <tr>
@@ -364,7 +367,26 @@
                     </tr>
                 </table>
 
-                <p>After only one simulation the center cell has become negative so clearly there is an issue with this apporach.</p>
+                <p>
+                    After only one simulation step the center cell has become negative and the total sum of all other cells 
+                    is greater than the intial sum so clearly there is an issue with this apporach.
+                </p>
+
+                <h2>Being Choosy and Adding Randomness</h2>
+
+                <p>
+                    There were probably a few ways to fix this issue and I did try a few different things such as trying to recursively count
+                    the number of neighbors with more fluid and using that to calcualte some max flowInAmount, but nothing I tried worked. Everytime
+                    I thought I solved the problem I discovered a new edge case that lead to an increase or decrease in the total fluid on the map
+                    and I started to lose hope.
+                </p>
+                <p>
+                    After taking a step back from the problem I realized that I should probably try to decompose my problem into the simplest form I could. 
+                    I went back to the calculation of the <span style="font-weight: bold;">flowInAmount</span>, and broke it down even further.
+                    In both scenarios shown above, the center cell attempts to flow into all neighboring cells simultaneously which
+                    leads to the calculation issues in  <span style="font-weight: bold;">Scenario 2</span>. So instead of flowing into all neighboring
+                    cells I decided to try to only simulate flow into one neighbor per simulation step.
+                </p>
 
                 <h2>Why the GPU?</h2>
 
